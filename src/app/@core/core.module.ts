@@ -15,20 +15,18 @@ import {
 
 const socialLinks = [
   {
-    url: 'https://github.com/akveo/nebular',
-    target: '_blank',
-    icon: 'socicon-github',
-  },
-  {
-    url: 'https://www.facebook.com/akveo/',
-    target: '_blank',
+    name: "facebook",
     icon: 'socicon-facebook',
   },
   {
-    url: 'https://twitter.com/akveo_inc',
+    name: "google",
+    icon: 'socicon-google',
+  },
+  /*{
+    url: 'https://twitter.com/',
     target: '_blank',
     icon: 'socicon-twitter',
-  },
+  },*/
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
