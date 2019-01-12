@@ -16,26 +16,23 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Firebase
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
-//Auth
+// Auth
 import { AuthGuard } from './auth/auth-guard.service';
 import { AuthService } from './auth/auth-service.service';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { RequestPasswordComponent } from './auth/request-password/request-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-
-export const firebaseConfig = {
-  
-};
+import { environment } from '../environments/environment.prod';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent, RegisterComponent, RequestPasswordComponent, ResetPasswordComponent
+    LoginComponent, RegisterComponent, RequestPasswordComponent, ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +40,7 @@ export const firebaseConfig = {
     HttpClientModule,
     AppRoutingModule,
 
-    AngularFireModule.initializeApp(firebaseConfig), AngularFirestoreModule, AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule,
 
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
@@ -52,7 +49,7 @@ export const firebaseConfig = {
   bootstrap: [AppComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
-    AuthGuard, AuthService
+    AuthGuard, AuthService,
   ],
 })
 export class AppModule {

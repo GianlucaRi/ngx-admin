@@ -15,11 +15,11 @@ import {
 
 const socialLinks = [
   {
-    name: "facebook",
+    name: 'facebook',
     icon: 'socicon-facebook',
   },
   {
-    name: "google",
+    name: 'google',
     icon: 'socicon-google',
   },
   /*{
@@ -39,7 +39,6 @@ export class NbSimpleRoleProvider extends NbRoleProvider {
 export const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
   ...NbAuthModule.forRoot({
-
     strategies: [
       NbDummyAuthStrategy.setup({
         name: 'email',
@@ -52,6 +51,26 @@ export const NB_CORE_PROVIDERS = [
       },
       register: {
         socialLinks: socialLinks,
+      },
+      validation: {
+        password: {
+          required: true,
+          minLength: 8,
+          maxLength: 42,
+        },
+        email: {
+          required: true,
+        },
+        fullName: {
+          required: true,
+          minLength: 4,
+          maxLenght: 42,
+        },
+        company: {
+          required: false,
+          minLength: 3,
+          maxLength: 42,
+        },
       },
     },
   }).providers,

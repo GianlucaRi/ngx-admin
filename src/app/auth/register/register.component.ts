@@ -7,7 +7,7 @@ import { NB_AUTH_OPTIONS, NbAuthSocialLink } from '@nebular/auth';
 
 
 @Component({
-  selector: 'app-register',
+  selector: 'ngx-register',
   styleUrls: ['./register.component.scss'],
   templateUrl: './register.component.html',
 })
@@ -43,7 +43,7 @@ export class RegisterComponent {
         this.submitted = false;
         this.messages = [];
 
-        this.redirectToDashboard()
+        this.redirectToDashboard();
       })
       .catch((err) => {
         this.submitted = false;
@@ -52,19 +52,19 @@ export class RegisterComponent {
   }
 
   loginSocial(name) {
-    if (name === "google") {
+    if (name === 'google') {
       this.loginGoogle();
-    } else if (name === "facebook") {
+    } else if (name === 'facebook') {
       this.loginFb();
-    } else{
-      console.warn("No login for " + name);
+    } else {
+      console.warn('No login for ' + name);
     }
   }
 
   loginGoogle() {
     this.auth.signInWithGoogle()
       .then((success) => {
-        this.redirectToDashboard()
+        this.redirectToDashboard();
       })
       .catch((err) => {
         this.errors = [err];
@@ -74,7 +74,7 @@ export class RegisterComponent {
   loginFb() {
     this.auth.signInWithFacebook()
       .then((success) => {
-        this.redirectToDashboard()
+        this.redirectToDashboard();
       })
       .catch((err) => {
         this.errors = [err];

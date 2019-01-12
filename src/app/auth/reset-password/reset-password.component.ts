@@ -5,7 +5,7 @@ import { getDeepFromObject } from '@nebular/auth/helpers';
 import { NB_AUTH_OPTIONS, NbAuthSocialLink } from '@nebular/auth';
 
 @Component({
-  selector: 'app-reset-password',
+  selector: 'ngx-reset-password',
   styleUrls: ['./reset-password.component.scss'],
   templateUrl: './reset-password.component.html',
 })
@@ -29,7 +29,6 @@ export class ResetPasswordComponent {
 
     this.activatedRoute.queryParams.subscribe(params => {
       this.code = params['oobCode'];
-      console.log(this.code); // Print the parameter to the console. 
     });
 
     this.redirectDelay = this.getConfigValue('forms.resetPassword.redirectDelay');
@@ -44,11 +43,10 @@ export class ResetPasswordComponent {
     this.submitted = true;
 
     this.auth.confirmPasswordReset(this.code, this.user.password)
-      .then((res) => {
+      .then(() => {
         this.submitted = false;
-        this.messages = [res];
 
-        this.redirectToDashboard()
+        this.redirectToDashboard();
       })
       .catch((err) => {
         this.submitted = false;

@@ -119,7 +119,7 @@
         <ng-container *ngFor="let socialLink of socialLinks">
         <a (click)="loginSocial(socialLink.name)"
               [attr.class]="socialLink.icon"
-              [class.with-icon]="socialLink.icon">{{ socialLink.title }}</a>
+              [class.with-icon]="socialLink.icon" style="cursor: pointer;">{{ socialLink.title }}</a>
         </ng-container>
       </div>
     </ng-container>

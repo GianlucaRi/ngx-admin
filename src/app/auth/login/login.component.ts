@@ -5,7 +5,7 @@ import { getDeepFromObject } from '@nebular/auth/helpers';
 import { NB_AUTH_OPTIONS, NbAuthSocialLink } from '@nebular/auth';
 
 @Component({
-  selector: 'app-login',
+  selector: 'ngx-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -35,32 +35,31 @@ export class LoginComponent {
     this.submitted = true;
 
     this.auth.signInWithEmail(this.user.email, this.user.password)
-      .then((res) => {
+      .then(() => {
         this.submitted = false;
-        this.messages = [res];
 
-        this.redirectToDashboard()
+        this.redirectToDashboard();
       })
       .catch((err) => {
         this.submitted = false;
         this.errors = [err];
       });
   }
-  
+
   loginSocial(name) {
-    if (name === "google") {
+    if (name === 'google') {
       this.loginGoogle();
-    } else if (name === "facebook") {
+    } else if (name === 'facebook') {
       this.loginFb();
-    } else{
-      console.warn("No login for " + name);
+    } else {
+      console.warn('No login for ' + name);
     }
   }
 
   loginGoogle() {
     this.auth.signInWithGoogle()
-      .then((success) => {
-        this.redirectToDashboard()
+      .then(() => {
+        this.redirectToDashboard();
       })
       .catch((err) => {
         this.errors = [err];
@@ -70,14 +69,14 @@ export class LoginComponent {
   loginFb() {
     this.auth.signInWithFacebook()
       .then((success) => {
-        this.redirectToDashboard()
+        this.redirectToDashboard();
       })
       .catch((err) => {
         this.errors = [err];
       });
   }
 
-  redirectToDashboard(){
+  redirectToDashboard() {
     setTimeout(() => {
       this.router.navigate(['/pages/dashboard']);
     }, this.redirectDelay);

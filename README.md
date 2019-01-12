@@ -1,3 +1,54 @@
+# Ngx-Admin from akveo with Firebase (using AngularFire2)
+
+## Firebase auth with the template of akveo/nebular/auth
+The akveo auth provider is not needed anymore.
+
+I added a new auth provider that is connected to your firebase app.
+
+You will have the same look than akveo/ngx-admin.
+
+You need to go to the app.module to add your own firebase config.
+
+## Login and register page
+Email and password authentification is easy !
+
+## Login and register using Connect with Google, Facebook... mechanics also based on firebase
+On login and register you have "connect with" buttons are linked to your firebase auth mechanics.
+
+To edit them also go to @core/core.module.ts and add the specific function in register and login.
+
+Example : 
+
+const socialLinks = [
+  {
+    name: "facebook",
+    icon: 'socicon-facebook',
+  },... ]
+
+Register mecanics for google and facebook is not completly finished. Contributions are welcome.
+
+They work but does not triggers everything yet.
+
+Login "connect with" is fine.
+
+## Reset Password
+
+"Request password" page with ask firebase to send an email.
+
+The email should link to the "reset password" page.
+
+Then the "code" is in the link (parameter oobCode) is extracted from the url to secure the password change.
+
+## Other note
+
+I added a additional field on the register to show you how to store additional info on firestore.
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+
+# Original read me by Akveo
+
 [![Build Status](https://travis-ci.org/akveo/ngx-admin.svg?branch=master)](https://travis-ci.org/akveo/ngx-admin)
 [![Join the chat at https://gitter.im/ng2-admin/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ng2-admin/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://david-dm.org/akveo/ngx-admin/status.svg)](https://david-dm.org/akveo/ng2-admin)
