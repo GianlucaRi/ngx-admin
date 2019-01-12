@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable()
 export class AuthService {
@@ -16,30 +16,28 @@ export class AuthService {
       (user) => {
         if (user) {
           this.userDetails = user;
-          console.log(this.userDetails);
-        }
-        else {
+        } else {
           this.userDetails = null;
         }
-      }
+      },
     );
   }
 
   register(email, password, fullName, company) {
     return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(
-        (afUser: firebase.User) => {
+        (afCredential: firebase.auth.UserCredential) => {
           // Update the profile in firebase auth
-          afUser.updateProfile({
+          afCredential.user.updateProfile({
             displayName: fullName,
-            photoURL: ""
-          }).then(() => afUser.sendEmailVerification());
+            photoURL: '',
+          }).then(() => afCredential.user.sendEmailVerification());
           // Create the user in firestore
-          this._firestore.firestore.collection("users").doc(afUser.uid).set(
+          this._firestore.firestore.collection('users').doc(afCredential.user.uid).set(
             {
-              uid: afUser.uid,
-              company: company
-            }
+              uid: afCredential.user.uid,
+              company: company,
+            },
           );
         });
   }
@@ -61,18 +59,18 @@ export class AuthService {
   }
   signInWithTwitter() {
     return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.TwitterAuthProvider()
-    )
+      new firebase.auth.TwitterAuthProvider(),
+    );
   }
   signInWithFacebook() {
     return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.FacebookAuthProvider()
-    )
+      new firebase.auth.FacebookAuthProvider(),
+    );
   }
   signInWithGoogle() {
     return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    )
+      new firebase.auth.GoogleAuthProvider(),
+    );
   }
 
   isLoggedIn() {

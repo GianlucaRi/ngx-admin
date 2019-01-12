@@ -5,7 +5,7 @@ import { getDeepFromObject } from '@nebular/auth/helpers';
 import { NB_AUTH_OPTIONS, NbAuthSocialLink } from '@nebular/auth';
 
 @Component({
-  selector: 'app-request-password',
+  selector: 'ngx-request-password',
   styleUrls: ['./request-password.component.scss'],
   templateUrl: './request-password.component.html',
 })
@@ -31,17 +31,16 @@ export class RequestPasswordComponent {
     this.validation = this.getConfigValue('forms.validation');
   }
 
-  requestPass(){
+  requestPass() {
 
     this.errors = this.messages = [];
     this.submitted = true;
 
     this.auth.requestPass(this.user.email).then(
-      (res) => {
+      () => {
       this.submitted = false;
-      this.messages = [res];
 
-      this.redirectToDashboard()
+      this.redirectToDashboard();
     })
     .catch((err) => {
       this.submitted = false;
@@ -49,7 +48,7 @@ export class RequestPasswordComponent {
     });
   }
 
-  redirectToDashboard(){
+  redirectToDashboard() {
     setTimeout(() => {
       this.router.navigate(['/pages/dashboard']);
     }, this.redirectDelay);
@@ -59,3 +58,4 @@ export class RequestPasswordComponent {
     return getDeepFromObject(this.config, key, null);
   }
 }
+

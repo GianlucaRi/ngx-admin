@@ -6,15 +6,20 @@ import { of as observableOf } from 'rxjs';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
-import { AnalyticsService } from './utils/analytics.service';
+import {
+  AnalyticsService,
+  LayoutService,
+  PlayerService,
+  StateService,
+} from './utils';
 
 const socialLinks = [
   {
-    name: "facebook",
+    name: 'facebook',
     icon: 'socicon-facebook',
   },
   {
-    name: "google",
+    name: 'google',
     icon: 'socicon-google',
   },
   /*{
@@ -34,17 +39,6 @@ export class NbSimpleRoleProvider extends NbRoleProvider {
 export const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
   ...NbAuthModule.forRoot({
-    /* providers: {
-      email: {
-        // service: NbDummyAuthProvider, // Not really needed any more
-        config: {
-          delay: 3000,
-          login: {
-            rememberMe: true,
-          },
-        },
-      },
-    }, */
     strategies: [
       NbDummyAuthStrategy.setup({
         name: 'email',
@@ -76,7 +70,7 @@ export const NB_CORE_PROVIDERS = [
           required: false,
           minLength: 3,
           maxLength: 42,
-        }
+        },
       },
     },
   }).providers,
@@ -99,6 +93,9 @@ export const NB_CORE_PROVIDERS = [
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   },
   AnalyticsService,
+  LayoutService,
+  PlayerService,
+  StateService,
 ];
 
 @NgModule({
