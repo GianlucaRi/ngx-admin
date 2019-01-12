@@ -66,6 +66,7 @@
     "echarts": "^4.0.2",
     "eva-icons": "^1.1.1",
     "firebase": "^5.7.3",
+    "font-awesome": "4.7.0",
     "intl": "1.2.5",
     "ionicons": "2.0.1",
     "leaflet": "1.2.0",

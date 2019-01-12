@@ -58,3 +58,4 @@ export class RequestPasswordComponent {
     return getDeepFromObject(this.config, key, null);
   }
 }
+

@@ -91,3 +91,4 @@ export class RegisterComponent {
     return getDeepFromObject(this.config, key, null);
   }
 }
+
